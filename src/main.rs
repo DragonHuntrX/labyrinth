@@ -16,7 +16,7 @@ pub mod tilemap;
 
 const PLAYER_SPEED: f32 = 256.;
 const VIEW_DISTANCE: f32 = 300.;
-const TILE_SIZE: f32 = 1.;
+const TILE_SIZE: f32 = 64.;
 
 fn main() {
     App::new()
@@ -58,7 +58,12 @@ fn tile_visibility_system(
     };
 
     for (mut vis, mut texture, transform, shadow_vis) in &mut tile_query {
-        if ptransform.translation.floor().distance(transform.translation().floor()) <= VIEW_DISTANCE {
+        if ptransform
+            .translation
+            .floor()
+            .distance(transform.translation().floor())
+            <= VIEW_DISTANCE
+        {
             if texture.set_if_neq(ass_serv.load(shadow_vis.light_path.clone())) {
                 texture.set_changed();
             }

@@ -5,7 +5,7 @@ use bevy_rapier2d::{
     geometry::Collider,
 };
 
-use crate::PLAYER_SPEED;
+use crate::{PLAYER_SPEED, TILE_SIZE};
 
 pub struct PlayerPlugin;
 

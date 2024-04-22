@@ -65,7 +65,7 @@ fn load_level(commands: &mut Commands, levelname: &str, ass_serv: Res<AssetServe
                                 RigidBody::Dynamic,
                                 ShadowVisibility {
                                     shadow_path: None,
-                                    light_path: "push_block.png".to_string(),
+                                    light_path: "tiles/push_block.png".to_string(),
                                 },
                                 LockedAxes::ROTATION_LOCKED,
                                 Damping {
@@ -74,7 +74,7 @@ fn load_level(commands: &mut Commands, levelname: &str, ass_serv: Res<AssetServe
                                 },
                                 Collider::cuboid(31., 31.),
                                 SpriteBundle {
-                                    texture: ass_serv.load("push_block.png"),
+                                    texture: ass_serv.load("tiles/push_block.png"),
                                     visibility: Visibility::Hidden,
                                     transform: Transform::from_xyz(
                                         c as f32 * 64.,
@@ -86,9 +86,11 @@ fn load_level(commands: &mut Commands, levelname: &str, ass_serv: Res<AssetServe
                             ));
                         });
                     }
+                    '*' => {}
                     'X' => {
                         map_entity.insert(Transform::from_xyz(c as f32 * -64., r as f32 * 64., 0.));
                     }
+
                     _ => (),
                 }
 
@@ -98,12 +100,12 @@ fn load_level(commands: &mut Commands, levelname: &str, ass_serv: Res<AssetServe
                             commands.spawn((
                                 RigidBody::Fixed,
                                 ShadowVisibility {
-                                    shadow_path: Some("wall_shadow.png".to_string()),
-                                    light_path: "wall_light.png".to_string(),
+                                    shadow_path: Some("tiles/wall_shadow.png".to_string()),
+                                    light_path: "tiles/wall_light.png".to_string(),
                                 },
                                 Collider::cuboid(32.1, 32.1),
                                 SpriteBundle {
-                                    texture: ass_serv.load("wall_shadow.png"),
+                                    texture: ass_serv.load("tiles/wall_shadow.png"),
                                     visibility: Visibility::Hidden,
                                     transform: Transform::from_xyz(
                                         c as f32 * 64.,
@@ -120,11 +122,11 @@ fn load_level(commands: &mut Commands, levelname: &str, ass_serv: Res<AssetServe
                         map_entity.with_children(|commands| {
                             commands.spawn((
                                 ShadowVisibility {
-                                    shadow_path: Some("ground_shadow.png".to_string()),
-                                    light_path: "ground_light.png".to_string(),
+                                    shadow_path: Some("tiles/ground_shadow.png".to_string()),
+                                    light_path: "tiles/ground_light.png".to_string(),
                                 },
                                 SpriteBundle {
-                                    texture: ass_serv.load("ground_shadow.png"),
+                                    texture: ass_serv.load("tiles/ground_shadow.png"),
                                     visibility: Visibility::Hidden,
                                     transform: Transform::from_xyz(
                                         c as f32 * 64.,
